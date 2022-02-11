@@ -53,7 +53,7 @@ const Home = ({todos}) => {
         </nav>
       <div className="flex justify-center">
         <div className="w-full max-w-sm">
-          <form onSubmit={postData}>
+          <form>
             <div className="mb-4">
               {/* body */}
               <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="body">
@@ -107,7 +107,14 @@ const Home = ({todos}) => {
             <div className="flex items-center justify-between">
               <button
                 className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-                onSubmit={postData()}
+                onClick={() => axios.post("https://api.rainoto.com/todos", {body,
+                  completed,
+                  date,
+                  dateBy,
+                  pet,
+                  trait,
+                  username}
+                )}
               >
                 Submit
               </button>
