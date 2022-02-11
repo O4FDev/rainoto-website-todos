@@ -124,7 +124,6 @@ const Home = ({todos}) => {
               </button>
             </div>
           <p className="py-4"><span className="font-bold">Tip:</span> the pet will become available when you complete the todo, if you dont complete the todo on time the pet will be lost forever!</p>
-          <p>{date}</p>
           </form>
         </div>
       </div>
