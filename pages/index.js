@@ -12,6 +12,7 @@ const Home = ({todos}) => {
   const [dateBy, setDateBy] = useState("")
   const date = new Date().toISOString().slice(0, 10)
   const [pet, setPet] = useState("Fire")
+  const [res, setRes] = useState("")
 
   const traitList = [
     "Cute",
@@ -51,8 +52,7 @@ const Home = ({todos}) => {
     })
     .then(res => res.json())
     .then(data => {
-      // reload the page
-      router.reload()
+      setRes(data)
     })
   }
 
@@ -176,6 +176,7 @@ const Home = ({todos}) => {
           })
         }
       </div>
+      <p>{res}</p>
     </div>
   );
 }
