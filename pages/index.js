@@ -145,7 +145,8 @@ const Home = ({todos}) => {
                       <button className="" onClick={() => {
                         axios.put('https://api.rainoto.com/todos/' + todo._id, {
                           Headers: {
-                            "Content-Type": "application/json"
+                            "Content-Type": "application/json",
+                            "Access-Control-Allow-Methods": "GET, POST, PATCH, PUT, DELETE, OPTIONS"
                           },
                           completed: true
                         })
