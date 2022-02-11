@@ -30,17 +30,29 @@ const Home = ({todos}) => {
   const trait = traitList[Math.floor(Math.random() * traitList.length)]
 
   const postData = () => {
-    axios.post('https://api.rainoto.com/todos', {
-      username,
-      body,
-      completed,
-      dateBy,
-      date,
-      pet,
-      trait
+    // use a mobile supported 
+    fetch('https://api.rainoto.com/todos', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        "Access-Control-Allow-Methods": "GET, POST, PATCH, PUT, DELETE, OPTIONS",
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Headers": "Origin, X-Requested-With, Content-Type, Accept"
+      },
+      body: JSON.stringify({
+        username: username,
+        pet: pet,
+        trait: trait,
+        completed: completed,
+        dateBy: dateBy,
+        body: body,
+        date: date
+      })
     })
-    .then(res => {
-      router.reload()
+    .then(res => res.json())
+    .then(data => {
+      // reload the page
+      router.push('/')
     })
   }
 
