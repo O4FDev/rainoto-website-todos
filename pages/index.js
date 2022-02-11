@@ -1,7 +1,6 @@
 import { useUser } from "@clerk/nextjs";
 import Link from "next/link";
 import { useState } from "react";
-import Navbar from "../Components/Navbar";
 import axios from 'axios';
 import { useRouter } from 'next/router'
 
@@ -47,7 +46,10 @@ const Home = ({todos}) => {
 
   return (
     <div>
-      <Navbar />
+        <nav className="m-6 flex justify-between">
+          <h1 className="text-2xl font-bold">Rainoto</h1>
+          <Link href="/pets"><a className="text-green-700">See your pets</a></Link>
+        </nav>
       <div className="flex justify-center">
         <div className="w-full max-w-sm">
           <form onSubmit={postData}>
@@ -164,7 +166,7 @@ const Home = ({todos}) => {
   );
 }
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
   /* 
   * Note: I made this in a hurry, so it's not super pretty or even usable in production. Don't judge me based on this, provide me with a test and I'll write production ready code.
   */

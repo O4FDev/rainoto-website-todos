@@ -27,7 +27,7 @@ const Pets = ({ todos }) => {
     )
 }
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
     const res = await axios.get('https://api.rainoto.com/todos');
     return {
       props: {
