@@ -50,7 +50,7 @@ const Home = ({todos}) => {
     )
 
     const result = await res.json()
-    router.reload();
+    router.push('/');
   }
 
   return (
