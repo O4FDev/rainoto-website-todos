@@ -12,7 +12,6 @@ const Home = ({todos}) => {
   const [dateBy, setDateBy] = useState("")
   const date = new Date().toISOString().slice(0, 10)
   const [pet, setPet] = useState("Fire")
-  const [res, setRes] = useState("")
 
   const traitList = [
     "Cute",
@@ -30,8 +29,8 @@ const Home = ({todos}) => {
 
   const trait = traitList[Math.floor(Math.random() * traitList.length)]
 
-  const postData = () => {
-    axios.post("https://api.rainoto.com/todos", {
+  const postData = async (event) => {
+    const res = await axios.post("https://api.rainoto.com/todos", {
       body,
       completed,
       date,
@@ -41,7 +40,7 @@ const Home = ({todos}) => {
       username,
     })
     .then(res => {
-      setRes(res.data)
+      // console.log(res)
     });
   }
 
@@ -53,7 +52,7 @@ const Home = ({todos}) => {
         </nav>
       <div className="flex justify-center">
         <div className="w-full max-w-sm">
-          <form>
+          <form onSubmit={postData}>
             <div className="mb-4">
               {/* body */}
               <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="body">
@@ -107,14 +106,7 @@ const Home = ({todos}) => {
             <div className="flex items-center justify-between">
               <button
                 className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-                onClick={() => axios.post("https://api.rainoto.com/todos", {body,
-                  completed,
-                  date,
-                  dateBy,
-                  pet,
-                  trait,
-                  username}
-                )}
+                type="submit"
               >
                 Submit
               </button>
@@ -172,7 +164,6 @@ const Home = ({todos}) => {
           })
         }
       </div>
-      <p>{res}</p>
     </div>
   );
 }
