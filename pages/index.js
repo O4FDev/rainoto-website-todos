@@ -29,7 +29,8 @@ const Home = ({todos}) => {
 
   const trait = traitList[Math.floor(Math.random() * traitList.length)]
 
-  const postData = async event => {
+  const postData = async (event) => {
+    event.preventDefault()
     const res = await fetch(
       'https://api.rainoto.com/todos',
       {
@@ -50,7 +51,6 @@ const Home = ({todos}) => {
     )
 
     const result = await res.json()
-    router.push('/');
   }
 
   return (
