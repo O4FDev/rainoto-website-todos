@@ -29,24 +29,29 @@ const Home = ({todos}) => {
 
   const trait = traitList[Math.floor(Math.random() * traitList.length)]
 
-  const postData = async (event) => {
-    const res = await axios.post("https://api.rainoto.com/todos", {
-      Headers: {
-        "Content-Type": "application/json",
-        "Access-Control-Allow-Origin": "*",
-        "Access-Control-Allow-Methods": "POST",
-      },
-      body,
-      completed,
-      date,
-      dateBy,
-      pet,
-      trait,
-      username,
-    })
-    .then(res => {
-      // console.log(res)
-    });
+  const postData = async event => {
+    event.preventDefault()
+    const res = await fetch(
+      'https://api.rainoto.com/todos',
+      {
+        body: JSON.stringify({
+          username,
+          body,
+          completed,
+          dateBy,
+          date,
+          pet,
+          trait
+        }),
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        method: 'POST',
+      }
+    )
+
+    const result = await res.json()
+    router.push('/')
   }
 
   return (
