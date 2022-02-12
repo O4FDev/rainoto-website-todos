@@ -29,10 +29,16 @@ const Home = ({todos}) => {
     "Sleepy",
   ]
 
+  
+
   const trait = traitList[Math.floor(Math.random() * traitList.length)]
 
   const postData = async (event) => {
     event.preventDefault()
+    const shinyChance = Math.floor(Math.random() * 10000)
+    if (shinyChance == 0) {
+      setPet("Shiny")
+    }
     const res = await fetch(
       'https://api.rainoto.com/todos',
       {
@@ -104,7 +110,8 @@ const Home = ({todos}) => {
               <select
                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                 id="pet"
-                onChange={(e) => setPet(e.target.value)}
+                onChange={(e) => 
+                  Math.floor(Math.random() * 10000) == 0 ? setPet("Shiny") : setPet(e.target.value)}
               >
                 <option value="">Select a pet</option>
                 <option value="Desert">Desert</option>
