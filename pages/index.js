@@ -12,6 +12,7 @@ const Home = ({todos}) => {
   const [dateBy, setDateBy] = useState("")
   const date = new Date().toISOString().slice(0, 10)
   const [pet, setPet] = useState("Fire")
+  const [reloadPlease, setReloadPlease] = useState(false)
 
   const traitList = [
     "Cute",
@@ -30,6 +31,7 @@ const Home = ({todos}) => {
   const trait = traitList[Math.floor(Math.random() * traitList.length)]
 
   const postData = async (event) => {
+    event.preventDefault()
     const res = await fetch(
       'https://api.rainoto.com/todos',
       {
@@ -49,7 +51,7 @@ const Home = ({todos}) => {
       }
     )
     const result = await res.json()
-    router.push('/')
+    setReloadPlease(true)
   }
 
   return (
@@ -115,6 +117,7 @@ const Home = ({todos}) => {
               <button
                 className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
                 type="submit"
+                onClick={() => {router.reload()}}
               >
                 Submit
               </button>
