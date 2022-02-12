@@ -3,6 +3,7 @@ import Link from "next/link";
 import { useState } from "react";
 import axios from 'axios';
 import { useRouter } from 'next/router'
+import Head from "next/head";
 
 const Home = ({todos}) => {
   const router = useRouter()
@@ -57,42 +58,13 @@ const Home = ({todos}) => {
 
   return (
     <div>
-      <>
-        {
-          modalOpen &&
-          // tailwind
-          <div className="fixed inset-0 flex items-center justify-center">
-            <div className="fixed inset-0 bg-gray-900 opacity-75 z-50"></div>
-            <div className="fixed inset-0 bg-white z-50 flex flex-col items-center justify-center">
-              <div className="bg-white rounded-lg shadow-lg p-6">
-                <div className="flex justify-between items-center">
-                  <h2 className="text-2xl font-bold">Add a new todo</h2>
-                  <button
-                    onClick={() => setModalOpen(false)}
-                    className="text-gray-500 hover:text-gray-700"
-                  >
-                    <svg
-                      className="h-6 w-6"
-                      fill="none"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="2"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                    >
-                      <path d="M6 18L18 6M6 6l12 12" />
-                    </svg>
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-        }
-      </>
-        <nav className="m-6 flex justify-between">
-          <h1 className="text-2xl font-bold">Rainoto</h1>
-          <Link href="/pets"><a className="text-green-700">See your pets</a></Link>
-        </nav>
+      <Head>
+        <title>Rainoto</title>
+      </Head>
+      <nav className="m-6 flex justify-between">
+        <h1 className="text-2xl font-bold">Rainoto</h1>
+        <Link href="/pets"><a className="text-green-700">See your pets</a></Link>
+      </nav>
       <div className="flex justify-center">
         <div className="w-full max-w-sm">
           <form onSubmit={postData}>
