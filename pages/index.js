@@ -35,10 +35,6 @@ const Home = ({todos}) => {
 
   const postData = async (event) => {
     event.preventDefault()
-    const shinyChance = Math.floor(Math.random() * 10000)
-    if (shinyChance == 0) {
-      setPet("Shiny")
-    }
     const res = await fetch(
       'https://api.rainoto.com/todos',
       {
