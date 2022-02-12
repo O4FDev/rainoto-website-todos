@@ -106,7 +106,7 @@ const Home = ({todos}) => {
                 id="body"
                 onInput={(e) => setBody(e.target.value)}
                 type="text"
-                placeholder="Enter a body"
+                placeholder="Enter a todo"
               />
             </div>
             
