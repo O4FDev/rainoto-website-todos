@@ -51,7 +51,7 @@ const Home = ({todos}) => {
     )
 
     const result = await res.json()
-    router.push('/')
+    router.reload(window.location.pathname)
   }
 
   return (
