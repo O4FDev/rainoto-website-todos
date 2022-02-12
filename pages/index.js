@@ -31,6 +31,11 @@ const Home = ({todos}) => {
 
   const postData = async (event) => {
     const res = await axios.post("https://api.rainoto.com/todos", {
+      Headers: {
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods": "POST",
+      },
       body,
       completed,
       date,
