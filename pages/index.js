@@ -49,8 +49,8 @@ const Home = ({todos}) => {
         method: 'POST',
       }
     )
-
     const result = await res.json()
+    router.push('/')
   }
 
   return (
