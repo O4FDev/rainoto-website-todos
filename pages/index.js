@@ -12,7 +12,7 @@ const Home = ({todos}) => {
   const [dateBy, setDateBy] = useState("")
   const date = new Date().toISOString().slice(0, 10)
   const [pet, setPet] = useState("Fire")
-  const [reloadPlease, setReloadPlease] = useState(false)
+  const [modalOpen, setModalOpen] = useState(false)
 
   const traitList = [
     "Cute",
@@ -50,11 +50,45 @@ const Home = ({todos}) => {
         method: 'POST',
       }
     )
-    const result = await res.json()
+    const result = await res;
+    router.reload()
+    router.push('/')
   }
 
   return (
     <div>
+      <>
+        {
+          modalOpen &&
+          // tailwind
+          <div className="fixed inset-0 flex items-center justify-center">
+            <div className="fixed inset-0 bg-gray-900 opacity-75 z-50"></div>
+            <div className="fixed inset-0 bg-white z-50 flex flex-col items-center justify-center">
+              <div className="bg-white rounded-lg shadow-lg p-6">
+                <div className="flex justify-between items-center">
+                  <h2 className="text-2xl font-bold">Add a new todo</h2>
+                  <button
+                    onClick={() => setModalOpen(false)}
+                    className="text-gray-500 hover:text-gray-700"
+                  >
+                    <svg
+                      className="h-6 w-6"
+                      fill="none"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        }
+      </>
         <nav className="m-6 flex justify-between">
           <h1 className="text-2xl font-bold">Rainoto</h1>
           <Link href="/pets"><a className="text-green-700">See your pets</a></Link>
